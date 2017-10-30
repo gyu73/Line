@@ -1,0 +1,2 @@
+class MImage < ApplicationRecord
+end
