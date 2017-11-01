@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+100.times {
+User.new(name: Faker::Zelda.character, email: Faker::Internet.email, password: Faker::Number.number(10), avatar_file_name: Faker::Avatar.image).save(validate: false)
+}
+
+100.times {
+Group.create(name: Faker::Zelda.character)
+}
