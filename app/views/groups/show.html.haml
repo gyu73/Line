@@ -1,0 +1,6 @@
+.header
+  %h3.username
+    = current_user.name
+.content
+  = render partial: :message, collection: @messages, as: :message
+.form

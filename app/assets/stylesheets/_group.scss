@@ -31,6 +31,25 @@ h1, h2, h3, h4, h5, h6 {
   height: 85vh;
 }
 
+.message {
+  display: flex;
+  padding: 10px;
+
+  .message_content {
+    background-color: green;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  .message_time {
+    position: relative;
+    bottom: -15px;
+    font-size: 5px;
+    vertical-align: sub;
+  }
+}
+
 .form {
   background-color: red;
   height: 10vh;
