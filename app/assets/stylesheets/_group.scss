@@ -1,6 +1,16 @@
 .header {
   background-color: blue;
   height: 5vh;
+  display: grid;
+  grid-template-areas:
+  "left right";
+  grid-template-columns: 1fr 1fr;
+  h3 {
+    grid-area: left;
+  }
+  a {
+    grid-area: right;
+  }
 }
 
 .content {

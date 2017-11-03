@@ -6,6 +6,14 @@ class MessagesController < ApplicationController
     message = current_user.messages.new(message_params)
     current_group = Group.find(message_params[:group_id])
     if message.save && current_group.update(message_created_at: Time.new)
+      respond_to do |format|
+        format.html { redirect_to group_url(current_group)}
+        if current_user.id == message.user.id
+          format.json { render json: message.create_current_user_message_json}
+        else
+          format.json { render json: message.create_not_current_user_message_json}
+        end
+      end
     end
   end
 
