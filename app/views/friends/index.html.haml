@@ -2,11 +2,14 @@
 - @friends.each do |friend|
   .friends_index
     .friend_image
-      = friend.user.name + "のアイコン"
+      = friend.name + "のアイコン"
     .friend_name
-      = friend.user.name
+      = friend.name
     .start_talk
-      - if friend.user.user_groups & current_user.user_groups
-        トークに戻る
+      - if (friend.groups & current_user.groups).present?
+        - group = (friend.groups & current_user.groups)[0]
+        = link_to 'トークに戻る', group_path(group)
       - else
-        新しいトークを始める。
+        = form_with model: @new_group, url: "/groups" do |f|
+          = f.hidden_field :friend_id, value: friend.id
+          = f.submit '新しいトークを始める'
