@@ -10,21 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030123156) do
+ActiveRecord::Schema.define(version: 20171103141937) do
 
-  create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
+  create_table "friend_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "friend_id"
+    t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["friend_id"], name: "index_friends_on_friend_id"
-    t.index ["user_id"], name: "index_friends_on_user_id"
+    t.index ["friend_id"], name: "index_friend_groups_on_friend_id"
+    t.index ["group_id"], name: "index_friend_groups_on_group_id"
+  end
+
+  create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "email"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.timestamp "message_created_at"
   end
 
   create_table "m_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -41,6 +50,15 @@ ActiveRecord::Schema.define(version: 20171030123156) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_messages_on_group_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "user_friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_user_friends_on_friend_id"
+    t.index ["user_id"], name: "index_user_friends_on_user_id"
   end
 
   create_table "user_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -74,10 +92,12 @@ ActiveRecord::Schema.define(version: 20171030123156) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "friends", "users"
-  add_foreign_key "friends", "users", column: "friend_id"
+  add_foreign_key "friend_groups", "friends"
+  add_foreign_key "friend_groups", "groups"
   add_foreign_key "messages", "groups"
   add_foreign_key "messages", "users"
+  add_foreign_key "user_friends", "friends"
+  add_foreign_key "user_friends", "users"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"
 end
