@@ -1,6 +1,10 @@
 .header
   %h3.username
-    = current_user.name
+    = @users[0] == current_user.name ? @users[0].name : @users[1].name
 .content
   = render partial: :message, collection: @messages, as: :message
 .form
+  = form_with(model: [@current_group, Message.new]) do |f|
+    = f.text_field :message, placeholder: 'メッセージを入力してください', class: 'input_message'
+    = f.hidden_field :group_id, value: @current_group.id
+    = f.submit 'SEND'
