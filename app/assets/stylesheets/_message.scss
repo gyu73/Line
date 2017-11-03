@@ -1,0 +1,38 @@
+.message_not_current_user {
+  display: flex;
+  padding: 10px;
+  flex-direction: row-reverse;
+}
+
+.message_content_not_cuurent_user {
+  background-color: green;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.message_time_not_cuurent_user {
+position: relative;
+bottom: -15px;
+font-size: 5px;
+vertical-align: sub;
+}
+
+.message_current_user{
+  display: flex;
+  padding: 10px;
+}
+
+.message_content_cuurent_user {
+  background-color: gray;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.message_time_cuurent_user {
+  position: relative;
+  bottom: -15px;
+  font-size: 5px;
+  vertical-align: sub;
+}
