@@ -1,0 +1,12 @@
+.friend_header
+- @friends.each do |friend|
+  .friends_index
+    .friend_image
+      = friend.user.name + "のアイコン"
+    .friend_name
+      = friend.user.name
+    .start_talk
+      - if friend.user.user_groups & current_user.user_groups
+        トークに戻る
+      - else
+        新しいトークを始める。
