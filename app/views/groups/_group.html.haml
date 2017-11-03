@@ -1,0 +1,10 @@
+%a{ href: group_path(group.id)}
+  .group_contents
+    .user_image
+      = group.users[0] == current_user.name ? group.users[0].name : group.users[1].name
+    .user_name
+      = group.users[0] == current_user.name ? group.users[0].name : group.users[1].name
+    .message_created_at
+      = current_date_in_Japanese group.messages.last(1)[0].created_at
+    .message_content
+      = group.messages.last(1)[0].message
