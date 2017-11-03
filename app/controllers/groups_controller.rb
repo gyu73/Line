@@ -1,7 +1,6 @@
 class GroupsController < ApplicationController
   def index
     @groups = current_user.groups.includes(:user_groups).includes(:users).includes(:messages).order('message_created_at DESC')
-    binding.pry
   end
 
   def create

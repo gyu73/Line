@@ -1,12 +1,14 @@
 - if message.user.name == current_user.name
-  .message_not_current_user
-    .message_content_not_cuurent_user
-      = message.message
-    .message_time_not_cuurent_user
-      = current_date_in_Japanese message.created_at
+  .message{ data: { message_id: message.id } }
+    .message_current_user
+      .message_content_cuurent_user
+        = message.message
+      .message_time_cuurent_user
+        = current_date_in_Japanese message.created_at
 - else
-  .message_current_user
-    .message_content_cuurent_user
-      = message.message
-    .message_time_cuurent_user
-      = current_date_in_Japanese message.created_at
+  .message{ data: { message_id: message.id } }
+    .message_not_current_user
+      .message_content_not_cuurent_user
+        = message.message
+      .message_time_not_cuurent_user
+        = current_date_in_Japanese message.created_at
