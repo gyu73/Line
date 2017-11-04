@@ -5,6 +5,7 @@
         = message.message
       .message_time_cuurent_user
         = current_date_in_Japanese message.created_at
+        = message.already_reads[0].is_read ? "既読" : ""
 - else
   .message{ data: { message_id: message.id } }
     .message_not_current_user

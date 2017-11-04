@@ -47,8 +47,10 @@ y = 1
 
 # メッセージ作成(messagesテーブルで一元管理)
 100.times {
-  Message.create(message: Faker::Lorem.sentence, user_id: 1, group_id: 1)
-  Message.create(message: Faker::Lorem.sentence, user_id: 2, group_id: 1)
+  message1 = Message.create(message: Faker::Lorem.sentence, user_id: 1, group_id: 1)
+  AlreadyRead.create(user_id: 1, message_id: message1.id)
+  message2 = Message.create(message: Faker::Lorem.sentence, user_id: 2, group_id: 1)
+  AlreadyRead.create(user_id: 2, message_id: message2.id)
 }
 
 Friend.create(name: "メッセージまだの人", email: "bbb@gmail.com")
