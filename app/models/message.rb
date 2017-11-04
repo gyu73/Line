@@ -10,6 +10,7 @@ class Message < ApplicationRecord
 
   belongs_to :user
   belongs_to :group
+  has_many :already_reads
 
   validates :message, presence: true, length: {maximum: 225}
 end

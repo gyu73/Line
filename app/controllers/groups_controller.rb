@@ -16,9 +16,11 @@ class GroupsController < ApplicationController
 
   def show
     @current_group = Group.find(params[:id])
-    @messages = Message.where(group_id: params[:id]).includes(:user)
+    @messages = Message.where(group_id: params[:id]).includes(:user).includes(:already_reads)
     @users = @current_group.users
     @new_message = Message.new
+    AlreadyRead.where(is_read: false, message_id: @messages.ids).where.not(user_id: current_user.id).update(is_read: true)
+    binding.pry
   end
 
   private

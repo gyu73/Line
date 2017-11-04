@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103141937) do
+ActiveRecord::Schema.define(version: 20171104014403) do
+
+  create_table "already_reads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "message_id"
+    t.boolean "is_read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_already_reads_on_message_id"
+    t.index ["user_id"], name: "index_already_reads_on_user_id"
+  end
 
   create_table "friend_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "friend_id"
@@ -92,6 +102,8 @@ ActiveRecord::Schema.define(version: 20171103141937) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "already_reads", "messages"
+  add_foreign_key "already_reads", "users"
   add_foreign_key "friend_groups", "friends"
   add_foreign_key "friend_groups", "groups"
   add_foreign_key "messages", "groups"
