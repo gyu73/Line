@@ -1,6 +1,4 @@
 class Friend < ApplicationRecord
-  has_many :friend_groups
-  has_many :groups , through: :friend_groups
-  has_many :user_friends
-  has_many :users, through: :user_friends
+  belongs_to :user, class_name: 'User', foreign_key: :user_id
+  belongs_to :friend, class_name: 'User', foreign_key: :friend_id
 end
