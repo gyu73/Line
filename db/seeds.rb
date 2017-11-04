@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # 自分のユーザー作成(usersテーブルとfriendsテーブルには全く同じユーザーが入る)
-User.new(name: "柳生", email: "aaa@gmail.com", password: "000000").save(validate: false)
-Friend.create(name: "柳生", email: "aaa@gmail.com")
+User.new(name: "柳生1", email: "aaa@gmail.com", password: "000000").save(validate: false)
+User.new(name: "柳生2", email: "bbb@gmail.com", password: "000000").save(validate: false)
 
 # ダミーユーザー作成(Sign_up時)
 99.times {
@@ -16,19 +16,18 @@ name = Faker::Zelda.character
 email = Faker::Internet.email
 file_name = Faker::Avatar.image
 User.new(name: name, email: email, password: Faker::Number.number(10), avatar_file_name: file_name).save(validate: false)
-Friend.create(name: name, email: email, avatar: file_name)
 }
 
 # 友達追加作成
 f = 2
-10.times {
-  UserFriend.create(user_id: 1, friend_id: f)
+20.times {
+  Friend.create(user_id: 1, friend_id: f)
   f += 1
 }
 
 # グループ作成(チャット開始)
 x = 1
-99.times {
+10.times {
 Group.create(name: "グループ#{x}", message_created_at: Time.new)
 x += 1
 }
@@ -38,9 +37,7 @@ x = 2
 y = 1
 200.times {
   UserGroup.create(user_id: 1, group_id: y)
-  FriendGroup.create(friend_id: 1, group_id: y)
   UserGroup.create(user_id: x, group_id: y)
-  FriendGroup.create(friend_id: x, group_id: y)
   x += 1
   y += 1
 }
@@ -53,6 +50,6 @@ y = 1
   AlreadyRead.create(user_id: 2, message_id: message2.id)
 }
 
-Friend.create(name: "メッセージまだの人", email: "bbb@gmail.com")
-User.create(name: "メッセージまだの人", email: "bbb@gmail.com", password: "000000").save(validate: false)
-UserFriend.create(user_id: 1, friend_id: 101)
+Friend.create(user_id: 1, friend_id: 100)
+# User.create(name: "メッセージまだの人", email: "bbb@gmail.com", password: "000000").save(validate: false)
+# UserFriend.create(user_id: 1, friend_id: 101)
