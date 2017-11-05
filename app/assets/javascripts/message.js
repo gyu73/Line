@@ -66,7 +66,7 @@ $(function() {
       }
       else {
         var not_current_user_html = build_not_current_user_HTML(data)
-        return $('.content').scrollTop(last_scroll);
+        return $('.content').append(not_current_user_html);
       }
     })
     .fail(function() {
