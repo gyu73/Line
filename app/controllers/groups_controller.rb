@@ -19,7 +19,6 @@ class GroupsController < ApplicationController
     @users = @current_group.users
     @new_message = Message.new
     AlreadyRead.where(is_read: false, message_id: @messages.ids).where.not(user_id: current_user.id).update(is_read: true)
-    binding.pry
     respond_to do |format|
       format.html
       format.json { render json: update_new_messages_json }
