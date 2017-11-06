@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
 
   // メッセージを一番下から表示
   if ($('.message').length > 0) {
@@ -51,7 +51,8 @@ if (e.keyCode == 13) { // Enterが押された
 } else {
   $.noop();
 }
-});
+}
+);
 
   function SendAjax() {
     var message = $('.message_form')[0][2].value
@@ -84,6 +85,7 @@ if (e.keyCode == 13) { // Enterが押された
   // 自動更新のためのメソッド
   function getNewMessages() {
     var group_id = $('.message_form')[0][3].value
+    console.log(group_id);
     if(location.pathname == '/groups/'+ group_id) {
       var LastMessageId = $(".message:last-child").data("message-id");
       $.ajax({
@@ -115,11 +117,13 @@ if (e.keyCode == 13) { // Enterが押された
     }
   }
   //自動更新のための記述
-  var group_id = $('.message_form')[0][3].value
-  if(location.pathname == '/groups/' + group_id ) {
-    var timer = setInterval(getNewMessages, 10000);
-  }
-  else {
+  if ($('.message_form').length > 0 ) {
+   var group_id = $('.message_form')[0][3].value
+    if(location.pathname == '/groups/' + group_id ) {
+      var timer = setInterval(getNewMessages, 5000);
+    }
+    else {
     clearInterval(timer);
+    }
   }
 });
