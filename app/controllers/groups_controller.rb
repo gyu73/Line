@@ -40,9 +40,9 @@ class GroupsController < ApplicationController
     update_messages_json = []
     update_messages.each do |up_mes|
       if up_mes.user_id == current_user.id
-        update_messages_json << { message_id: up_mes.id, name: up_mes.user.name, created_at: up_mes.created_at.strftime('%Y年%m月%d日 %H:%M:%S'), message: up_mes.message, user_info: "current_user" }
+        update_messages_json << { message_id: up_mes.id, name: up_mes.user.name, created_at: up_mes.created_at.strftime('%H:%M:%S'), message: up_mes.message, user_info: "current_user" }
       else
-        update_messages_json << { message_id: up_mes.id, name: up_mes.user.name, created_at: up_mes.created_at.strftime('%Y年%m月%d日 %H:%M:%S'), message: up_mes.message, user_info: "not_current_user" }
+        update_messages_json << { message_id: up_mes.id, name: up_mes.user.name, created_at: up_mes.created_at.strftime('%H:%M:%S'), message: up_mes.message, user_info: "not_current_user" }
       end
     end
     return update_messages_json

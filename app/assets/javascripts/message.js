@@ -1,9 +1,11 @@
-$(window).on('load', function() {
+$(function() {
+
+  // メッセージを一番下から表示
+  if ($('.message').length > 0) {
   last_scroll = $('.content').find(":last").offset().top
   $('.content').scrollTop(last_scroll);
-})
+}
 
-$(function() {
   function build_current_user_HTML(new_message) {
     var html =
     '<div class= message data-message-id=' +
@@ -37,13 +39,19 @@ $(function() {
   }
 
 // イベント
-  $('.submit_button').on('click', function(e) {
+$('.input_message').on('keypress', function(e) {
+if (e.keyCode == 13) { // Enterが押された
+  if (e.shiftKey) { // Shiftキーも押された
+    $.noop();
+  } else if ($(this).val().replace(/\s/g, "").length > 0) {
     e.preventDefault();
     SendAjax();
-    last_scroll = $('.content').find(":last").offset().top
-    $('.content').scrollTop(last_scroll);
-    console.log(last_scroll);
-  })
+    $(this).val("")
+  }
+} else {
+  $.noop();
+}
+});
 
   function SendAjax() {
     var message = $('.message_form')[0][2].value

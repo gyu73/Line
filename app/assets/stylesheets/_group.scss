@@ -1,5 +1,5 @@
 .header {
-  background-color: blue;
+  background-color: #bfbfbf;
   height: 5vh;
   display: grid;
   grid-template-areas:
@@ -16,50 +16,49 @@
 .content {
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: yellow;
+  background-color: #ffffff;
   overflow-y: scroll;
   height: 85vh;
 }
 
-.form {
-  background-color: red;
+.message_form {
   height: 10vh;
 }
 
 .input_message {
-  width: 90%;
-  margin-left: 20px;
-  font-size: 15px;
-  height: 20px;
+  height: 100%;
+  width: 100%;
+  resize: none;
 }
 
 .group_index_header {
-  background-color: blue;
+  background-color: #bfbfbf;
   height: 5vh;
 }
 
 .group_contents {
-  background-color: yellow;
+  background-color: #ffffff;
   display: grid;
   grid-template-areas:
-    "side upper1 upper2"
-    "side footer footer";
+    "side upper1 upper2 upper3"
+    "side footer1 footer1 footer2";
     grid-template-rows: 40px 60px;
     grid-template-columns: 100px 200px 150px;
+    margin: 10px;
     .user_image {
       grid-area: side;
-      background-color: red;
+      background-color: #f8f8f8;
     }
     .user_name {
       grid-area: upper1;
-      background-color: green;
+      background-color: #f8f8f8;
     }
     .message_created_at {
       grid-area: upper2;
-      background-color: gray;
+      background-color: #f8f8f8;
     }
     .message_content {
-      grid-area: footer;
-      background-color: purple;
+      grid-area: footer1;
+      background-color: #f8f8f8;
     }
 }
