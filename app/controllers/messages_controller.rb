@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
 
   def create
     message = current_user.messages.new(message_params)
+    binding.pry
     current_group = Group.find(message_params[:group_id])
     if message.save && current_group.update(message_created_at: Time.new)
       AlreadyRead.create(user_id: current_user.id, message_id: message.id)
