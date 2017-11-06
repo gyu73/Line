@@ -5,10 +5,10 @@ class GroupsController < ApplicationController
 
   def create
     friend = User.find(friend_params[:friend_id])
-    new_group = Group.new(id: Group.last(1)[0].id + 1, name: "No name", message_created_at: Time.new)
+    new_group = Group.create(name: "No name", message_created_at: Time.new)
     usergroup_user = UserGroup.new(user_id: current_user.id, group_id: new_group.id)
     usergroup_friend = UserGroup.new(user_id: friend.id, group_id: new_group.id)
-    if new_group.save && usergroup_user.save && usergroup_friend.save
+    if usergroup_user.save && usergroup_friend.save
       redirect_to group_url(new_group)
     end
   end
