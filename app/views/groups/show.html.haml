@@ -6,6 +6,5 @@
   = render partial: :message, collection: @messages, as: :message
 .form
   = form_with model: [@current_group, Message.new], class: 'message_form' do |f|
-    = f.text_field :message, placeholder: 'メッセージを入力してください', class: 'input_message'
+    = f.text_area :message, placeholder: 'メッセージを入力してください', class: 'input_message'
     = f.hidden_field :group_id, value: @current_group.id
-    = f.submit 'SEND', class: 'submit_button'

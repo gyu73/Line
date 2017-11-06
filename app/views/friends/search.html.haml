@@ -1,0 +1,16 @@
+.search_header
+  = link_to '友人一覧', friends_path , class: 'fa fa-cog'
+  = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'
+.form
+  = form_with model: Friend.new, class: 'search_form' do |f|
+    = f.text_area :message, placeholder: '友達の名前を入力してください', class: 'input_message'
+- @not_friends.each do |friend|
+  .friends_index
+    .friend_image
+      = friend.name + "のアイコン"
+    .friend_name
+      = friend.name
+    .start_talk
+      = form_with model: Friend.new do |f|
+        = f.hidden_field :friend_id, value: friend.id
+        = f.submit '友達になる'

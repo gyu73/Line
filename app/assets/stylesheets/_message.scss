@@ -4,15 +4,16 @@
 }
 
 .message_content_not_cuurent_user {
-  background-color: gray;
+  background-color: #bfbfbf;
   border-radius: 10px;
   font-size: 18px;
   margin-left: 10px;
+  padding: 5px 10px;
 }
 
 .message_time_not_cuurent_user {
   position: relative;
-  bottom: -15px;
+  bottom: -25px;
   font-size: 5px;
   vertical-align: sub;
 }
@@ -25,16 +26,17 @@
 }
 
 .message_content_cuurent_user {
-  background-color: green;
+  background-color: rgba(90, 230, 40, 0.8) ;
   border-radius: 10px;
   font-size: 18px;
   margin-right: 10px;
+  padding: 5px 10px;
 
 }
 
 .message_time_cuurent_user {
   position: relative;
-  bottom: -15px;
+  bottom: -25px;
   font-size: 5px;
   vertical-align: sub;
 }
