@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
 
 // インクリメンタルサーチのメソッド
   function buildHtmluser(user){
