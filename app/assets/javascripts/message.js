@@ -105,7 +105,6 @@ if (e.keyCode == 13) { // Enterが押された
           }
             else {
               html += build_not_current_user_HTML(new_message);
-              debugger;
             }
           });
           return $('.content').append(html);
