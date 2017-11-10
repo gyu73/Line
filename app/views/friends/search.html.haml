@@ -1,7 +1,7 @@
 .search_header
   = current_user.name
-  = link_to '友人一覧', friends_path , class: 'fa fa-cog'
-  = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'
+  = link_to '友人一覧', friends_path
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
 .form
   = form_with model: Friend.new, class: 'search_form' do |f|
     = f.text_area :message, placeholder: '友達の名前を入力してください', class: 'input_message'

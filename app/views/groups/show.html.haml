@@ -1,7 +1,7 @@
 .header
   %h3.username
     = @users[0].name == current_user.name ? @users[1].name : @users[0].name
-  = link_to 'グループ一覧に戻る', groups_path , class: 'fa fa-cog'
+  = link_to 'グループ一覧に戻る', groups_path
 .content
   = render partial: :message, collection: @messages, as: :message
 .form

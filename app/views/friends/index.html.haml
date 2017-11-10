@@ -1,19 +1,24 @@
 .group_index_header
   = current_user.name
-  = link_to '友人検索', search_friends_path , class: 'fa fa-cog'
+  = link_to '友人検索', search_friends_path
   = link_to 'トーク一覧', groups_path
-  = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'
-- @friends.each do |friend|
-  .friends_index
-    .friend_image
-      = friend.name + "のアイコン"
-    .friend_name
-      = friend.name
-    .start_talk
-      - if (friend.groups & current_user.groups).present?
-        - group = (friend.groups & current_user.groups)[0]
-        = link_to 'トークに戻る', group_path(group)
-      - else
-        = form_with model: @new_group, url: "/groups" do |f|
-          = f.hidden_field :friend_id, value: friend.id
-          = f.submit '新しいトークを始める'
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
+- if @friends.present?
+  - @friends.each do |friend|
+    .friends_index
+      .friend_image
+        = friend.name + "のアイコン"
+      .friend_name
+        = friend.name
+      .start_talk
+        - if (friend.groups & current_user.groups).present?
+          - group = (friend.groups & current_user.groups)[0]
+          = link_to 'トークに戻る', group_path(group)
+        - else
+          = form_with model: @new_group, url: "/groups" do |f|
+            = f.hidden_field :friend_id, value: friend.id
+            = f.submit '新しいトークを始める'
+- else
+  友達はまだいません。
+  = link_to '友人検索', search_friends_path , class: 'fa fa-cog'
+  から友達を探してください。
