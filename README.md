@@ -34,7 +34,3 @@ cancel_user_registration GET    /users/cancel(.:format)              devise/regi
                          POST   /groups(.:format)                    groups#create
                    group GET    /groups/:id(.:format)                groups#show
 ```
-
-### 問題点
-
-heroku上でJQueryが動作しなかったので修正する必要あり
