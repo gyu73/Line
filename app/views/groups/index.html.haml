@@ -1,4 +1,5 @@
 .group_index_header
+  = current_user.name
   = link_to '友人一覧', friends_path , class: 'fa fa-cog'
   = link_to '友人検索', search_friends_path , class: 'fa fa-cog'
   = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'

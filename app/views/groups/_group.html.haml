@@ -1,9 +1,9 @@
 %a{ href: group_path(group.id)}
   .group_contents
     .user_image
-      = group.users[0] == current_user.name ? group.users[0].name : group.users[1].name
+      = group.users[0].name == current_user.name ? group.users[1].name : group.users[0].name
     .user_name
-      = group.users[0] == current_user.name ? group.users[0].name : group.users[1].name
+      = group.users[0].name == current_user.name ? group.users[1].name : group.users[0].name
     .message_created_at
       // 三項演算子でかけるかも？ヘルパーメソッドのところでエラーが起こる
       -if group.messages.present?
@@ -12,3 +12,8 @@
         = current_date_in_Japanese group.message_created_at
     .message_content
       = group.messages.present? ? group.messages.last(1)[0].user.name + ":" + group.messages.last(1)[0].message : "New Group!!"
+    - if @counts[group_counter] != 0
+      .not_read_message_count
+        = @counts[group_counter] unless @counts[group_counter] == 0
+    - else
+      .read_message

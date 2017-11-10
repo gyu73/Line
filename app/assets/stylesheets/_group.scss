@@ -40,8 +40,8 @@
   background-color: #ffffff;
   display: grid;
   grid-template-areas:
-    "side upper1 upper2 upper3"
-    "side footer1 footer1 footer2";
+    "side upper1 upper2"
+    "side footer1 footer2";
     grid-template-rows: 40px 60px;
     grid-template-columns: 100px 200px 150px;
     margin: 10px;
@@ -59,6 +59,14 @@
     }
     .message_content {
       grid-area: footer1;
+      background-color: #f8f8f8;
+    }
+    .not_read_message_count {
+      grid-area: footer2;
+      background-color: rgba(90, 230, 40, 0.8);
+    }
+    .read_message {
+      grid-area: footer2;
       background-color: #f8f8f8;
     }
 }
